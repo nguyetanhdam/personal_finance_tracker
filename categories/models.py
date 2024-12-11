@@ -7,7 +7,7 @@ class TransactionType(models.IntegerChoices):
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    type = models.PositiveSmallIntegerField(choices=TransactionType.choices, default=TransactionType.INCOME)
+    type = models.IntegerField(choices=TransactionType.choices, default=TransactionType.INCOME)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
     def __str__(self):
