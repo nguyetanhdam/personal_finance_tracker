@@ -18,3 +18,7 @@ class Category(models.Model):
             if value == self.type:
                 return {"id": value, "name": label}
         return 'Unknown Type'
+    
+    class Meta:
+        verbose_name = 'Categories'
+        verbose_name_plural = 'Categories'
