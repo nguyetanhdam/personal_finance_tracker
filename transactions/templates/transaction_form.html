@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{% if form.instance.pk %}Edit Transaction{% else %}Add Transaction{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{% if form.instance.pk %}Edit Transaction{% else %}Add Transaction{% endif %}</h1>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_category" class="form-label">Category</label>
+            {{ form.category }}
+        </div>
+        <div class="mb-3">
+            <label for="id_amount" class="form-label">Amount (VNĐ)</label>
+            {{ form.amount }}
+        </div>
+        <div class="mb-3">
+            <label for="id_date" class="form-label">Date</label>
+            {{ form.date }}
+        </div>
+        <div class="mb-3">
+            <label for="id_note" class="form-label">Note</label>
+            {{ form.note }}
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
