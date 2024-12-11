@@ -1,0 +1,56 @@
+Table user {
+  id integer [primary key]
+  username varchar
+  email varchar
+  password varchar
+  created_on datetime
+}
+
+Table category {
+  id integer [primary key]
+  name varchar
+  type varchar // income/expense
+  user_id integer
+}
+
+Table transaction {
+  id integer [primary key]
+  user_id integer
+  category_id integer
+  amount integer
+  type varchar // income/expense
+  date datetime
+  note text
+}
+
+Table budget {
+  id integer [primary key]
+  user_id integer
+  category_id integer
+  amount integer
+  start_date date
+  end_date date
+  status varchar // active/completed/exceeded
+}
+
+Table goal {
+  id integer [primary key]
+  user_id integer
+  name varchar
+  target_amount integer
+  saved_amount integer
+  deadline date
+  status varchar // in_progess/achieved
+}
+
+Ref: category.user_id > user.id
+
+Ref: transaction.user_id < user.id
+
+Ref: transaction.category_id < category.id
+
+Ref: budget.user_id < user.id
+
+Ref: budget.category_id < category.id
+
+Ref: goal.user_id < user.id
