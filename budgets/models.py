@@ -23,3 +23,6 @@ class Budget(models.Model):
             if value == self.status:
                 return {"id": value, "name": label}
         return {"id": None, "name": "Unknown Status"}
+
+    def get_display_amount(self):
+        return f"{self.amount:,}"
