@@ -13,6 +13,7 @@
             <th>Amount</th>
             <th>Type</th>
             <th>Date</th>
+            <th>Note</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,9 +22,10 @@
         <tr>
             <td>{{ transaction.id }}</td>
             <td>{{ transaction.category.name }}</td>
-            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.get_display_amount }}</td>
             <td>{{ transaction.get_type_display.name }}</td>
-            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.date | date:"d/m/Y"}}</td>
+            <td>{{ transaction.note }}</td>
             <td>
                 <a href="{% url 'transaction_update' transaction.id %}" class="btn btn-primary btn-sm">Edit</a>
                 <a href="{% url 'transaction_delete' transaction.id %}" class="btn btn-danger btn-sm">Delete</a>

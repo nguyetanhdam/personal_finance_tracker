@@ -19,3 +19,6 @@ class Transaction(models.Model):
             if value == self.type:
                 return {"id": value, "name": label}
         return {"id": None, "name": "Unknown Type"}
+
+    def get_display_amount(self):
+        return f"{self.amount:,}"
