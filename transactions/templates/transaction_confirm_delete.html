@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Delete Transaction</h1>
-    <p>Are you sure you want to delete the transaction "<strong>{{ transaction.category.name }}</strong>" with amount <strong>{{ transaction.amount }}</strong>?</p>
+    <p>Are you sure you want to delete the transaction "<strong>{{ transaction.category.name }}</strong>" with amount <strong>{{ transaction.get_display_amount }} VND</strong>?</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete</button>
