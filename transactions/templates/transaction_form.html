@@ -21,7 +21,7 @@
         </div>
         <div class="mb-3">
             <label for="id_note" class="form-label">Note</label>
-            {{ form.note }}
+            <textarea name="note" id="id_note" class="form-control" style="resize: none; height: 20px;">{{ form.note.value | default_if_none:''}}</textarea>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
         <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Cancel</a>
