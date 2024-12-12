@@ -8,8 +8,8 @@ class GoalStatus(models.IntegerChoices):
 class Goal(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, db_index=True)
     name = models.CharField(max_length=255)
-    target_amount = models.IntegerField(default=0, null=True, blank=True, db_index=True)
-    saved_amount = models.IntegerField(default=0, null=True, blank=True, db_index=True)
+    target_amount = models.BigIntegerField(default=0, null=True, blank=True, db_index=True)
+    saved_amount = models.BigIntegerField(default=0, null=True, blank=True, db_index=True)
     deadline = models.DateField(null=True, blank=True)
     status = models.IntegerField(choices=GoalStatus.choices, default=GoalStatus.IN_PROGRESS)
 
@@ -29,3 +29,9 @@ class Goal(models.Model):
         if self.saved_amount >= self.target_amount and self.status != GoalStatus.ACHIEVED:
             self.status = GoalStatus.ACHIEVED
             self.save(update_fields=["status"])
+
+    def get_display_target_amount(self):
+        return f"{self.target_amount:,}"
+
+    def get_display_saved_amount(self):
+        return f"{self.saved_amount:,}"
